@@ -8,29 +8,36 @@ import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class StackAlgo4_2493_3 {
+public class Top_2493 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		List<int[]> arr = new ArrayList<>();
+		Stack<Integer> re = new Stack<Integer>();
+		List<Integer> arr = new ArrayList<Integer>();
 		
 		int num = Integer.parseInt(br.readLine());
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		Stack<int[]> re = new Stack<>();
 		for(int i = 0 ; i < num ; i++) {
-			int[] a = new int[2];
-			a[0] = Integer.parseInt(st.nextToken());
-			a[1] = i;
-			arr.add(a);
-			while(!re.empty()&&re.peek()[0]<arr.get(i)[0]) {
-				re.pop();
+			arr.add(Integer.parseInt(st.nextToken()));
+		}
+		while(--num>=1) {
+			int n = arr.get(num);
+			boolean isre = false;
+			for(int i = num - 1 ; i >= 0; i--) {
+				if(arr.get(i)>n) {
+					re.push(i+1);
+					isre = true;
+					break;
+				}
 			}
-			if(re.empty()) {
-				sb.append("0 ");
-			}else {
-				sb.append((re.peek()[1]+1)+ " ");
+			if(!isre) {
+				re.push(0);
 			}
-			re.push(a);
+		}
+		re.push(0);
+		while (!re.empty()) {
+			sb.append(re.pop() + " ");
+			
 		}
 		System.out.println(sb);
 	}

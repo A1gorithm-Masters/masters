@@ -5,26 +5,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class StackAlgo2_10773 {
+public class StackSequence_1874 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int sum = 0;
+		StringBuilder sb = new StringBuilder();
 		Stack<Integer> st = new Stack<Integer>();
 		
 		int num = Integer.parseInt(br.readLine());
+		int idx = 1;
 		
-		for(int i = 0 ; i < num ; i++) {
+		for(int i = 1 ; i <= num ; i++) {
 			int x = Integer.parseInt(br.readLine());
-			switch (x) {
-				case 0: {
-					st.pop();
-					break;
-				}default:{
-					st.push(x);
-				}
+			for(int j = idx ; j <= x ; j++) {
+				st.push(j);
+				idx++;
+				sb.append("+\n");
 			}
+			if(st.lastElement()>x) {
+				sb.setLength(0);
+				sb.append("NO");
+				break;
+			}
+			st.pop();
+			sb.append("-\n");
+			
 		}
-		while(!st.empty()) sum += st.pop();
-		System.out.println(sum);
+		System.out.println(sb);
 	}
 }
