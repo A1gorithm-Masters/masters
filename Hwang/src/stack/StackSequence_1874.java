@@ -21,7 +21,7 @@ public class StackSequence_1874 {
 				idx++;
 				sb.append("+\n");
 			}
-			if(st.lastElement()>x) {
+			if(st.peek()>x) {
 				sb.setLength(0);
 				sb.append("NO");
 				break;
