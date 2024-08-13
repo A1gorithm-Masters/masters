@@ -38,7 +38,9 @@ public class Main {
                 if (i == list.size()-1) sb.append("-");
                 else sb.append("-\n");
                 continue;
-            } else if (stack.search(list.get(i)) != -1){
+            }
+
+            else if (stack.search(list.get(i)) != -1){
                 sb.setLength(0);
                 sb.append("NO");
                 break;
